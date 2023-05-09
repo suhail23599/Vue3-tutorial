@@ -4,6 +4,7 @@
     {{ abc }}
     {{ utilVarRef }}
     {{ utilVarReact.key }}
+    {{ myValues.someVar }}
   </div>
   <test-1 />
 </template>
@@ -26,11 +27,17 @@ export default {
     abc.value = 2
     utilVarRef.value = 'changed'
     utilVarReact.key = 'react-changed' // no need to mention .value to access key.
+    // combining multiple refs
+    const myValues = ref({
+      someVar: true,
+      otherValue: false
+    })
     return {
       abc,
       utilVarRef,
       userDetails,
-      utilVarReact
+      utilVarReact,
+      myValues
     }
   }
 }
