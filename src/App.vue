@@ -6,14 +6,19 @@
     {{ utilVarReact.key }}
     {{ myValues.someVar }}
     {{ userDetails.todo }}
+    <test-1 />
     <div :class="classObject">
       computed: {{ userInfo }}
     </div>
     <div>
       Group Computed: {{ computedPpty.ageVal }}
     </div>
+    <div>
+      Methods
+      <button @click="alert"> Click me</button>
+    </div>
   </div>
-  <test-1 />
+
 </template>
 
 <script>
@@ -60,6 +65,11 @@ export default {
       })
     }
     console.log(computedPpty.firstName.value, 'group computed')
+
+    // methods
+    function alert() {
+      window.alert('button clicked')
+    }
    
     return {
       abc,
@@ -69,7 +79,8 @@ export default {
       myValues,
       userInfo,
       computedPpty,
-      classObject
+      classObject,
+      alert
     }
   }
 }
