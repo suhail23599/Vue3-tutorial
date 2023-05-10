@@ -5,6 +5,7 @@
     {{ utilVarRef }}
     {{ utilVarReact.key }}
     {{ myValues.someVar }}
+    {{ userDetails.todo }}
   </div>
   <test-1 />
 </template>
@@ -19,7 +20,7 @@ export default {
     Test1
   },
   setup () {
-    let abc = ref('testing')
+    const abc = ref('testing')
     let userDetails = reactive({
       name: 'Jhon',
       age: '25'
