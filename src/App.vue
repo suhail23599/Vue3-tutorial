@@ -6,7 +6,7 @@
     {{ utilVarReact.key }}
     {{ myValues.someVar }}
     {{ userDetails.todo }}
-    <div>
+    <div :class="classObject">
       computed: {{ userInfo }}
     </div>
     <div>
@@ -34,6 +34,10 @@ export default {
     abc.value = 2
     utilVarRef.value = 'changed'
     utilVarReact.key = 'react-changed' // no need to mention .value to access key.
+    const classObject = ref({
+      active: true,
+      inactive: false
+    })
     // combining multiple refs
     const myValues = ref({
       someVar: true,
@@ -64,7 +68,8 @@ export default {
       utilVarReact,
       myValues,
       userInfo,
-      computedPpty
+      computedPpty,
+      classObject
     }
   }
 }
@@ -78,5 +83,12 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.active {
+  font-size: 18px;
+  color: red;
+}
+.inactive {
+  font-size: 24px;
 }
 </style>
