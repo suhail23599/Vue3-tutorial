@@ -6,12 +6,18 @@
     {{ utilVarReact.key }}
     {{ myValues.someVar }}
     {{ userDetails.todo }}
+    <div>
+      computed: {{ userInfo }}
+    </div>
+    <div>
+      Group Computed: {{ computedPpty.ageVal }}
+    </div>
   </div>
   <test-1 />
 </template>
 
 <script>
-import { ref, reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 import { utilVarRef, utilVarReact } from './Utils/util'
 import Test1 from './components/Test1.vue'
 export default {
@@ -21,9 +27,9 @@ export default {
   },
   setup () {
     const abc = ref('testing')
-    let userDetails = reactive({
+    const userDetails = reactive({
       name: 'Jhon',
-      age: '25'
+      age: 25
     })
     abc.value = 2
     utilVarRef.value = 'changed'
@@ -33,12 +39,32 @@ export default {
       someVar: true,
       otherValue: false
     })
+
+    // computed 
+    const userInfo = computed(() => {
+      return userDetails.name + ' ' + userDetails.age 
+    })
+    console.log(userInfo.value) // accessing computed
+
+    // Grouping computed properties
+    const computedPpty = {
+      firstName: computed(() => {
+        return userDetails.name
+      }),
+      ageVal: computed(() => {
+        return userDetails.age
+      })
+    }
+    console.log(computedPpty.firstName.value, 'group computed')
+   
     return {
       abc,
       utilVarRef,
       userDetails,
       utilVarReact,
-      myValues
+      myValues,
+      userInfo,
+      computedPpty
     }
   }
 }
