@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed, onRenderTracked, onRenderTriggered } from 'vue'
+import { ref, reactive, computed, onRenderTracked, onRenderTriggered, watch, watchEffect } from 'vue'
 import { utilVarRef, utilVarReact } from './Utils/util'
 import Test1 from './components/Test1.vue'
 export default {
@@ -85,6 +85,15 @@ export default {
 
     onRenderTriggered((event) => {
       console.log('re-rendered', event)
+    })
+
+    // watch
+    watch (count, (newVal, oldVal) => {
+      console.log(newVal, oldVal, 'Watch')
+    })
+
+    watchEffect(() => {
+      console.log(count.value, 'Watch effect')
     })
    
     return {
