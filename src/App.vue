@@ -6,7 +6,11 @@
     {{ utilVarReact.key }}
     {{ myValues.someVar }}
     {{ userDetails.todo }}
-    <test-1 />
+    <test-1 propVal="2" @receive-event="eventCall">
+      <template #slotVal>
+        <div>Slot</div>
+      </template>
+    </test-1>
     <div :class="classObject">
       computed: {{ userInfo }}
     </div>
@@ -95,6 +99,11 @@ export default {
     watchEffect(() => {
       console.log(count.value, 'Watch effect')
     })
+
+    function eventCall (args) {
+      console.log('event1')
+      console.log('event', args)
+    }
    
     return {
       abc,
@@ -107,7 +116,8 @@ export default {
       classObject,
       alert,
       increment,
-      count
+      count,
+      eventCall
     }
   }
 }
