@@ -15,14 +15,15 @@
     </div>
     <div>
       Methods
-      <button @click="alert"> Click me</button>
+      <button @click="alert(); increment()"> Click me</button>
+      <div>count: {{ count }}</div>
     </div>
   </div>
 
 </template>
 
 <script>
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, onRenderTracked, onRenderTriggered } from 'vue'
 import { utilVarRef, utilVarReact } from './Utils/util'
 import Test1 from './components/Test1.vue'
 export default {
@@ -49,6 +50,8 @@ export default {
       otherValue: false
     })
 
+    const count = ref(0)
+
     // computed 
     const userInfo = computed(() => {
       return userDetails.name + ' ' + userDetails.age 
@@ -70,6 +73,19 @@ export default {
     function alert() {
       window.alert('button clicked')
     }
+
+    function increment() {
+      count.value++
+    }
+
+    // hooks
+    onRenderTracked ( (event) => {
+      console.log('Tracked-event', event)
+    })
+
+    onRenderTriggered((event) => {
+      console.log('re-rendered', event)
+    })
    
     return {
       abc,
@@ -80,7 +96,9 @@ export default {
       userInfo,
       computedPpty,
       classObject,
-      alert
+      alert,
+      increment,
+      count
     }
   }
 }
