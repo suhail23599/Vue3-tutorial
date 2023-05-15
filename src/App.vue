@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-view />
     App.vue
     {{ abc }}
     {{ utilVarRef }}
@@ -36,6 +37,7 @@ export default {
     Test1
   },
   setup () {
+    console.log(this, 'THIS')
     const abc = ref('testing')
     const userDetails = reactive({
       name: 'Jhon',
