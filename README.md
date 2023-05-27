@@ -1,4 +1,4 @@
-# vue-3-kt
+# vue-3
 
 ## Project setup
 ```
